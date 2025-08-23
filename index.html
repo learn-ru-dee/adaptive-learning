@@ -12,19 +12,21 @@
     }
     /* กรอบแชตฝังกลางหน้า */
     .embed{
-      max-width:900px;width:92%;height:70vh;background:#fff;border:1px solid #eee;
-      border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,.08);
+      max-width:980px;width:92%;height:78vh;background:#fff;border:1px solid #eee;
+      border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,.08);overflow:hidden;
     }
+    /* ซ่อนปุ่มลอย/แถบ Start new chat */
+    .vfrc-widget-launcher, .vfrc-start-new-chat, button[data-testid="start-new-chat"]{display:none!important;}
   </style>
 </head>
 <body>
 
-  <!-- แชตอยู่กลางหน้า ไม่ลอย -->
   <div id="flat-chat" class="embed"></div>
 
-  <!-- สคริปต์ Voiceflow (แบบฝัง) -->
   <script type="text/javascript">
   (function(d,t){
+    /* เคลียร์ session เก่า กันค้าง "Start new chat" */
+    try{ Object.keys(localStorage).forEach(k=>{ if(k.startsWith('vf-')||k.includes('voiceflow')) localStorage.removeItem(k); }); }catch(e){}
     var v=d.createElement(t), s=d.getElementsByTagName(t)[0];
     v.onload=function(){
       window.voiceflow.chat.load({
