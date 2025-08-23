@@ -22,15 +22,21 @@
     <button id="open">เริ่มแชต</button>
   </div>
 
-  <script type="module">
-    import ChatWidget from "https://cdn.voiceflow.com/widget/bundle.mjs";
-    ChatWidget.render({
-      verify: { projectID: "68a5dcd15718c4ef73b9b236" },
-      url: "https://general-runtime.voiceflow.com",
-      versionID: "production"
-    });
-    window.addEventListener('load', () => ChatWidget.open());
-    document.getElementById('open').addEventListener('click', () => ChatWidget.open());
-  </script>
+  <script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '68a5dcd15718c4ef73b9b235' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
 </body>
 </html>
