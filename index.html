@@ -22,21 +22,6 @@
       overflow:hidden;
       margin-left: 16px;
     }
-    .vfrc-chat--embedded, .vfrc-chat { height:100%!important; }
-    .vfrc-widget-launcher,
-    .vfrc-start-new-chat,
-    button[data-testid="start-new-chat"]{ display:none!important; }
-    .vfrc-header{ display:none!important; }
-    .vfrc-image,
-    img.vfrc-image,
-    .vfrc-message img,
-    .vfrc-message--extension-Image img,
-    .vfrc-message-content img {
-      width: 70vw !important;
-      max-width: 70vw !important;
-      height: auto !important;
-      border-radius: 8px;
-    }
   </style>
 </head>
 <body>
@@ -58,6 +43,33 @@
           render:{ mode:"embedded", target: document.getElementById("flat-chat") },
           autostart:true
         });
+
+        // ฉีด CSS เข้า Shadow DOM
+        var injectCSS = function(){
+          var host = document.getElementById("voiceflow-chat");
+          if(!host || !host.shadowRoot){
+            setTimeout(injectCSS, 500);
+            return;
+          }
+          var style = document.createElement("style");
+          style.textContent = `
+            .vfrc-header { display:none !important; }
+            .vfrc-widget-launcher,
+            .vfrc-start-new-chat,
+            button[data-testid="start-new-chat"] { display:none !important; }
+            .vfrc-image,
+            img.vfrc-image,
+            .vfrc-message img,
+            .vfrc-message-content img {
+              width: 70vw !important;
+              max-width: 70vw !important;
+              height: auto !important;
+              border-radius: 8px;
+            }
+          `;
+          host.shadowRoot.appendChild(style);
+        };
+        setTimeout(injectCSS, 1500);
       };
       v.src="https://cdn.voiceflow.com/widget-next/bundle.mjs";
       v.type="text/javascript"; s.parentNode.insertBefore(v,s);
