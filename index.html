@@ -22,6 +22,11 @@
       overflow:hidden;
       margin-left: 16px;
     }
+    .vfrc-chat--embedded, .vfrc-chat { height:100%!important; }
+    .vfrc-widget-launcher,
+    .vfrc-start-new-chat,
+    button[data-testid="start-new-chat"]{ display:none!important; }
+    .vfrc-header{ display:none!important; }
   </style>
 </head>
 <body>
@@ -40,9 +45,6 @@
           url:"https://general-runtime.voiceflow.com",
           versionID:"production",
           user:{ id: uid },
-          assistant:{
-            stylesheet: "https://learn-ru-dee.github.io/adaptive-learning/custom.css"
-          },
           render:{ mode:"embedded", target: document.getElementById("flat-chat") },
           autostart:true
         });
@@ -50,4 +52,6 @@
       v.src="https://cdn.voiceflow.com/widget-next/bundle.mjs";
       v.type="text/javascript"; s.parentNode.insertBefore(v,s);
     })(document,"script");
-  </scrip
+  </script>
+</body>
+</html>
