@@ -40,40 +40,14 @@
           url:"https://general-runtime.voiceflow.com",
           versionID:"production",
           user:{ id: uid },
+          assistant:{
+            stylesheet: "https://learn-ru-dee.github.io/adaptive-learning/custom.css"
+          },
           render:{ mode:"embedded", target: document.getElementById("flat-chat") },
           autostart:true
         });
-
-        // ฉีด CSS เข้า Shadow DOM
-        var injectCSS = function(){
-          var host = document.getElementById("voiceflow-chat");
-          if(!host || !host.shadowRoot){
-            setTimeout(injectCSS, 500);
-            return;
-          }
-          var style = document.createElement("style");
-          style.textContent = `
-            .vfrc-header { display:none !important; }
-            .vfrc-widget-launcher,
-            .vfrc-start-new-chat,
-            button[data-testid="start-new-chat"] { display:none !important; }
-            .vfrc-image,
-            img.vfrc-image,
-            .vfrc-message img,
-            .vfrc-message-content img {
-              width: 70vw !important;
-              max-width: 70vw !important;
-              height: auto !important;
-              border-radius: 8px;
-            }
-          `;
-          host.shadowRoot.appendChild(style);
-        };
-        setTimeout(injectCSS, 1500);
       };
       v.src="https://cdn.voiceflow.com/widget-next/bundle.mjs";
       v.type="text/javascript"; s.parentNode.insertBefore(v,s);
     })(document,"script");
-  </script>
-</body>
-</html>
+  </scrip
