@@ -1,0 +1,7 @@
+.vfrc-image,
+img.vfrc-image {
+  width: 70vw !important;
+  max-width: 70vw !important;
+  height: auto !important;
+  border-radius: 8px;
+}
