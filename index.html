@@ -22,11 +22,6 @@
       overflow:hidden;
       margin-left: 16px;
     }
-    .vfrc-chat--embedded, .vfrc-chat { height:100%!important; }
-    .vfrc-widget-launcher,
-    .vfrc-start-new-chat,
-    button[data-testid="start-new-chat"]{ display:none!important; }
-    .vfrc-header{ display:none!important; }
   </style>
 </head>
 <body>
@@ -48,6 +43,31 @@
           render:{ mode:"embedded", target: document.getElementById("flat-chat") },
           autostart:true
         });
+
+        // ฉีด CSS เข้า Shadow DOM ด้วย MutationObserver
+        var cssInjected = false;
+        var observer = new MutationObserver(function(mutations, obs){
+          if(cssInjected) return;
+          var host = document.getElementById("voiceflow-chat");
+          if(host && host.shadowRoot){
+            var style = document.createElement("style");
+            style.textContent = `
+              .vfrc-image,
+              img.vfrc-image,
+              [class*="_2gcuke"] {
+                width: 70vw !important;
+                max-width: 70vw !important;
+                min-width: 70vw !important;
+                height: auto !important;
+                border-radius: 8px !important;
+              }
+            `;
+            host.shadowRoot.appendChild(style);
+            cssInjected = true;
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(function(){ observer.disconnect(); }, 30000);
       };
       v.src="https://cdn.voiceflow.com/widget-next/bundle.mjs";
       v.type="text/javascript"; s.parentNode.insertBefore(v,s);
