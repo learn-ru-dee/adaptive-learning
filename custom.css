@@ -1,8 +1,8 @@
 .vfrc-image,
 img.vfrc-image,
 [class*="_2gcuke"] {
-  width: 70vw !important;
-  max-width: 70vw !important;
+  width: 70% !important;
+  max-width: 70% !important;
   height: auto !important;
   border-radius: 8px !important;
 }
