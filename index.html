@@ -51,5 +51,32 @@
       v.type="text/javascript"; s.parentNode.insertBefore(v,s);
     })(document,"script");
   </script>
+  <script>
+(function () {
+  // 1) ปุ่มสีแดงเด่น
+  const BTN_TEXT  = 'ถามเวก้า';
+  const BTN_STYLE = { background:'#E53935', borderColor:'#E53935', color:'#fff', fontWeight:'700' };
+
+  // 2) กล่อง "วิธีเรียนรู้ในโมดูลนี้" พื้นเขียว
+  const BOX_TEXT  = 'วิธีเรียนรู้ในโมดูลนี้';
+  const BOX_STYLE = { background:'#E8F5E9' };   // เขียวอ่อน อ่านตัวหนังสือชัด
+
+  function paint(root) {
+    root.querySelectorAll('button').forEach(b => {
+      if (b.textContent.includes(BTN_TEXT)) Object.assign(b.style, BTN_STYLE);
+    });
+    root.querySelectorAll('[class*="message"]').forEach(m => {
+      if (m.textContent.includes(BOX_TEXT)) Object.assign(m.style, BOX_STYLE);
+    });
+  }
+  function roots(node, out) { out = out || [];
+    node.querySelectorAll('*').forEach(el => {
+      if (el.shadowRoot) { out.push(el.shadowRoot); roots(el.shadowRoot, out); }
+    });
+    return out;
+  }
+  setInterval(() => { paint(document); roots(document.body).forEach(paint); }, 800);
+})();
+</script>
 </body>
 </html>
