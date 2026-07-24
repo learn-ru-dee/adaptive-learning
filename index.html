@@ -60,6 +60,8 @@
   // 2) กล่อง "วิธีเรียนรู้ในโมดูลนี้" พื้นเขียว
   const BOX_TEXT  = 'วิธีเรียนรู้ในโมดูลนี้';
   const BOX_STYLE = { background:'#E8F5E9' };   // เขียวอ่อน อ่านตัวหนังสือชัด
+  const SUM_TEXT  = 'ช่วยสรุป 1 สิ่ง';
+const SUM_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
 
   function paint(root) {
     root.querySelectorAll('button').forEach(b => {
@@ -67,6 +69,9 @@
     });
     root.querySelectorAll('[class*="message"]').forEach(m => {
       if (m.textContent.includes(BOX_TEXT)) Object.assign(m.style, BOX_STYLE);
+    });
+    root.querySelectorAll('[class*="message"]').forEach(m => {
+      if (m.textContent.includes(SUM_TEXT)) Object.assign(m.style, SUM_STYLE);
     });
   }
   function roots(node, out) { out = out || [];
