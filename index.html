@@ -65,9 +65,12 @@ const SUM_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
   
 const GOAL_TEXT  = 'ก่อนเริ่มเรียน ขอถามสักนิดค่ะ';
 const GOAL_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
+    const REF_TEXT  = 'My Reflection';
+  const REF_STYLE = { background:'#F57C00', borderColor:'#F57C00', color:'#fff', fontWeight:'700' };
   function paint(root) {
     root.querySelectorAll('button').forEach(b => {
       if (b.textContent.includes(BTN_TEXT)) Object.assign(b.style, BTN_STYLE);
+            if (b.textContent.includes(REF_TEXT)) Object.assign(b.style, REF_STYLE);
     });
     root.querySelectorAll('[class*="message"]').forEach(m => {
       if (m.textContent.includes(BOX_TEXT)) Object.assign(m.style, BOX_STYLE);
