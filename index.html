@@ -62,7 +62,9 @@
   const BOX_STYLE = { background:'#E8F5E9' };   // เขียวอ่อน อ่านตัวหนังสือชัด
   const SUM_TEXT  = 'ช่วยสรุป 1 สิ่ง';
 const SUM_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
-
+  
+const GOAL_TEXT  = 'ก่อนเริ่มเรียน ขอถามสักนิดค่ะ';
+const GOAL_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
   function paint(root) {
     root.querySelectorAll('button').forEach(b => {
       if (b.textContent.includes(BTN_TEXT)) Object.assign(b.style, BTN_STYLE);
@@ -72,6 +74,9 @@ const SUM_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
     });
     root.querySelectorAll('[class*="message"]').forEach(m => {
       if (m.textContent.includes(SUM_TEXT)) Object.assign(m.style, SUM_STYLE);
+    });
+    root.querySelectorAll('[class*="message"]').forEach(m => {
+      if (m.textContent.includes(GOAL_TEXT)) Object.assign(m.style, GOAL_STYLE);
     });
   }
   function roots(node, out) { out = out || [];
