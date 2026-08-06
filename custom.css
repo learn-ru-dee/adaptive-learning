@@ -6,3 +6,14 @@ img.vfrc-image,
   height: auto !important;
   border-radius: 8px !important;
 }
+
+/* ขนาดตัวอักษรข้อความแชท */
+.vfrc-message,
+.vfrc-message p,
+.vfrc-message li,
+.vfrc-system-response,
+.vfrc-user-response,
+[class*="vfrc-message"] * {
+  font-size: 17px !important;
+  line-height: 1.75 !important;
+}
