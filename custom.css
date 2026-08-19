@@ -30,3 +30,17 @@ img.vfrc-image,
   background: #423A92 !important;
   border-color: #423A92 !important;
 }
+
+/* ขนาดตัวอักษรในการ์ด */
+.vfrc-card__title,
+[class*="vfrc-card"] [class*="title"] {
+  font-size: 20px !important;
+  line-height: 1.5 !important;
+  font-weight: 700 !important;
+}
+
+.vfrc-card__description,
+[class*="vfrc-card"] [class*="description"] {
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+}
