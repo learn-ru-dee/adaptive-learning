@@ -17,3 +17,16 @@ img.vfrc-image,
   font-size: 18px !important;
   line-height: 1.75 !important;
 }
+
+/* ปุ่มตัวเลือกในแชท ให้เข้มขึ้น เห็นชัดว่าเป็นปุ่ม */
+.vfrc-system-response--action .vfrc-button {
+  background: #5249B6 !important;
+  color: #ffffff !important;
+  border-color: #5249B6 !important;
+  font-weight: 600 !important;
+}
+
+.vfrc-system-response--action .vfrc-button:hover {
+  background: #423A92 !important;
+  border-color: #423A92 !important;
+}
