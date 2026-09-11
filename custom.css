@@ -20,15 +20,15 @@ img.vfrc-image,
 
 /* ปุ่มตัวเลือกในแชท ให้เข้มขึ้น เห็นชัดว่าเป็นปุ่ม */
 .vfrc-system-response--action .vfrc-button {
-  background: #5249B6 !important;
+  background: #5959AA !important;
   color: #ffffff !important;
-  border-color: #5249B6 !important;
+  border-color: #5959AA !important;
   font-weight: 600 !important;
 }
 
 .vfrc-system-response--action .vfrc-button:hover {
-  background: #423A92 !important;
-  border-color: #423A92 !important;
+  background: #484890 !important;
+  border-color: #484890 !important;
 }
 
 /* ขนาดตัวอักษรในการ์ด */
