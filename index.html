@@ -56,6 +56,8 @@
   // 1) ปุ่มสีแดงเด่น
   const BTN_TEXT  = 'ถามเวก้า';
   const BTN_STYLE = { background:'#26A69A', borderColor:'#26A69A', color:'#fff', fontWeight:'700' };
+  const ENTER_TEXT  = 'เข้าสู่ Module';
+  const ENTER_STYLE = { background:'#1E88E5', borderColor:'#1E88E5', color:'#fff', fontWeight:'700' };
 
   // 2) กล่อง "วิธีเรียนรู้ในโมดูลนี้" พื้นเขียว
   const BOX_TEXT  = 'วิธีเรียนรู้ในโมดูลนี้';
@@ -67,7 +69,7 @@ const GOAL_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
   function paint(root) {
     root.querySelectorAll('button').forEach(b => {
       if (b.textContent.includes(BTN_TEXT)) Object.assign(b.style, BTN_STYLE);
-  
+      if (b.textContent.includes(ENTER_TEXT)) Object.assign(b.style, ENTER_STYLE);
     });
     root.querySelectorAll('[class*="message"]').forEach(m => {
       if (m.textContent.includes(BOX_TEXT)) Object.assign(m.style, BOX_STYLE);
