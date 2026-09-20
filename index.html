@@ -88,5 +88,53 @@ const GOAL_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
   setInterval(() => { paint(document); roots(document.body).forEach(paint); }, 800);
 })();
 </script>
+<script>
+(function () {
+  // 3) สีสถานะการเรียน: แดง = ยังไม่เริ่ม, ส้ม = กำลังเรียน, เขียว = เรียนจบแล้ว
+  var RULES = [
+    { text: 'ยังไม่เริ่ม', color: '#D32F2F' },
+    { text: 'in_progress', color: '#EF8F00', label: 'กำลังเรียน' },
+    { text: 'completed',   color: '#2E7D32', label: 'เรียนจบแล้ว' }
+  ];
+  var KEY = 'สถานะการเรียน';
+  function paintStatus(root) {
+    if (!root.textContent || root.textContent.indexOf(KEY) < 0) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) {
+      var n = walker.currentNode;
+      if (n.nodeValue && n.nodeValue.indexOf(KEY) >= 0 && !(n.parentElement && n.parentElement.hasAttribute('data-vega-status'))) nodes.push(n);
+    }
+    nodes.forEach(function (n) {
+      RULES.forEach(function (r) {
+        var v = n.nodeValue, i = v.indexOf(r.text);
+        if (i < 0) return;
+        var span = document.createElement('span');
+        span.setAttribute('data-vega-status', '1');
+        span.style.color = r.color;
+        span.style.fontWeight = '700';
+        span.textContent = r.label || r.text;
+        var after = document.createTextNode(v.slice(i + r.text.length));
+        n.nodeValue = v.slice(0, i);
+        n.parentNode.insertBefore(span, n.nextSibling);
+        n.parentNode.insertBefore(after, span.nextSibling);
+      });
+    });
+  }
+  function attach() {
+    var host = document.querySelector('#flat-chat') || document.querySelector('#voiceflow-chat');
+    if (!host || !host.shadowRoot) return false;
+    var root = host.shadowRoot, pending = false;
+    paintStatus(root);
+    new MutationObserver(function () {
+      if (pending) return;
+      pending = true;
+      setTimeout(function () { pending = false; paintStatus(root); }, 300);
+    }).observe(root, { childList: true, subtree: true });
+    return true;
+  }
+  var tries = 0, timer = setInterval(function () { if (attach() || ++tries > 60) clearInterval(timer); }, 500);
+})();
+</script>
 </body>
 </html>
