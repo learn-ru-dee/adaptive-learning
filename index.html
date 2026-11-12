@@ -138,5 +138,28 @@ const GOAL_STYLE = { background:'#26A69A', color:'#fff', fontWeight:'700' };
   var tries = 0, timer = setInterval(function () { if (attach() || ++tries > 60) clearInterval(timer); }, 500);
 })();
 </script>
+<script>
+(function () {
+  // 4) I-014: แปลงเครื่องหมาย " และ \ ที่ผู้เรียนพิมพ์หรือวาง เป็น ' และ / ก่อนส่ง
+  //    (ถ้ามีเครื่องหมายนี้ ข้อมูลที่ส่งไป n8n จะเสีย ข้อความหาย และ workshop บันทึกคะแนนผิด)
+  function attach() {
+    var host = document.querySelector('#flat-chat');
+    if (!host || !host.shadowRoot) return false;
+    var setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+    host.shadowRoot.addEventListener('input', function (e) {
+      var t = e.target;
+      if (!t || t.tagName !== 'TEXTAREA') return;
+      var v = t.value, nv = v.replace(/["\u201C\u201D]/g, "'").replace(/\\/g, '/');
+      if (nv === v) return;
+      var pos = t.selectionStart;
+      setter.call(t, nv);
+      t.dispatchEvent(new Event('input', { bubbles: true }));
+      try { t.setSelectionRange(pos, pos); } catch (_) {}
+    }, true);
+    return true;
+  }
+  var tries = 0, timer = setInterval(function () { if (attach() || ++tries > 60) clearInterval(timer); }, 500);
+})();
+</script>
 </body>
 </html>
